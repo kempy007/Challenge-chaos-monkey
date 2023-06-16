@@ -34,3 +34,14 @@ We don’t expect this to be production-ready code. Equally, if you have time to
 Be careful to target your implementation against the ‘workloads’ namespace or you may need to rebuild your cluster.
 
 You can submit your code either by sharing a link to a Github repository or by emailing us a zip archive of your codebase.
+
+## Notes and Direction
+
+Operator-sdk satisfies lang=golang, dockerfile, operator manifests and deployment options.
+
+Use Operator-sdk to create CRD to configure a namespace else use all NS and to set a schedule (cron type). 
+Operator watches for this resource and creates/destroys a chaos Pod(perhaps use go concurrency) as per CRUD Operation with CRD options. 
+Filter out NS kube-system, monitoring
+Create manifests to setup workloads NS and introduce deployments and static pods.
+Create manifest for CRD for operator for workloads demo.
+Provide instructions in readme of howto deploy this operator and setup the demo.
