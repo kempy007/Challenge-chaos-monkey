@@ -1,0 +1,12 @@
+apiVersion: core.cypherpunk.io/v1
+kind: ChaosMonkey
+metadata:
+  labels:
+    app.kubernetes.io/name: chaosmonkey
+    app.kubernetes.io/instance: chaosmonkey-sample
+    app.kubernetes.io/part-of: challenge-chaos-monkey
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: challenge-chaos-monkey
+  name: chaosmonkey-sample
+spec:
+  # TODO(user): Add fields here
