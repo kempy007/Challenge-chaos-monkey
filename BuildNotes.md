@@ -32,7 +32,8 @@ Updated 17/06/23 ~11:00
 - [x] scheduler and pod killer working 11:50
 - [x] adhoc tested sucessfully on two minute schedule 12:10
 - [x] updating readme.md 12:30 - 12:50
-- [] Create Github action to build OLM bundle
+- [] Create Github action to build OLM bundle 12:50-13:10 
+- [] Debug GHA error
 
 ---
 
