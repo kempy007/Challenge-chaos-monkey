@@ -32,9 +32,13 @@ Updated 17/06/23 ~11:00
 - [x] scheduler and pod killer working 11:50
 - [x] adhoc tested sucessfully on two minute schedule 12:10
 - [x] updating readme.md 12:30 - 12:50
-- [] Create Github action to build OLM bundle 12:50-13:10 
-- [] Debug GHA error
-
+- [n] Create Github action to build OLM bundle 12:50-13:10 
+- [x] Debug GHA error
+- [x] dockerbuild and push to ghcr.io, made image public
+- [x] test pulled image ok 14:40
+- [x] debug OLM install 15:15
+- [x] updating and checking docs 15:30
+ 
 ---
 
 # Notes
@@ -43,9 +47,16 @@ operator-sdk init --domain cypherpunk.io --repo github.com/kempy007/Challenge-ch
 
 operator-sdk create api --group=core --version=v1 --kind=ChaosMonkey --controller=true --resource=true
 
-OLM Deployment needs to use docker to build an image which will need repo credentials to push. as per https://sdk.operatorframework.io/docs/building-operators/golang/quickstart/
+OLM Deployment needs to use docker to build an image which will need repo credentials to push. as per https://sdk.operatorframework.io/docs/building-operators/golang/quickstart/ I worked around this using podman, but never needed it.
 
 Look to use https://github.com/marketplace/actions/olm-bundle
+
+I can skip these steps, since github actions built the image.
+- make bundle IMG="ghcr.io/kempy007/challenge-chaos-monkey:v0.0.1"
+- make bundle-build bundle-push BUNDLE_IMG="ghcr.io/kempy007/challenge-chaos-monkey:v0.0.1"
+
+just need to run
+- make deploy IMG="ghcr.io/kempy007/challenge-chaos-monkey:v0.0.1"
 
 ---
 # prompt engineering - https://huggingface.co/spaces/HuggingFaceH4/starchat-playground

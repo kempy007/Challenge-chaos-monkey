@@ -12,11 +12,26 @@ Operator-sdk satisfies lang=golang, dockerfile, operator manifests and deploymen
 - [x] Create manifest for CRD for operator for workloads demo.
 - [x] Provide instructions in readme of howto deploy this operator and setup the demo.
 
+## What else you need to know
+
 I did have starcoder enabled in my IDE, and I used starchat to ask a question to get unstuck as I have not been on this bicycle for a few years. I feel I need to be on the bicycle at least weekly to remain speedy,current and fresh.
 
 I kept my dev notes in the [BuildNotes.md](./BuildNotes.md) file.
 
-I have overun on my time but met the core requirements at the expense of writing the unittests thus functions maybe leaning towards monolith.
+This was my second day using operator-sdk, I have to say I am impressed with this framework. I think I spent about a day on this, with half of that time or more learning how to use the framework, I kept a log in my build notes.
+
+I have overun on my time but met the core requirements at the expense of the following.
+
+Things I haven't done:
+
+- [ ] Handling more error conditions
+- [ ] Handling multiple CRDS
+- [ ] Handling conflicts
+- [ ] targeting kube-system and monitoring
+- [ ] unit testing
+- [ ] breaking down functions into more composable units
+- [ ] readability (some poor naming)
+- [ ] full cicd (just building image so OLM can deploy) no sast/dast/ect
 
 ## setup_and_prerequisites
 
@@ -39,6 +54,17 @@ Watch pods be deleted in workloads namespace. You write your own version of this
 
 ## OLM Bundle install
 
+- operator-sdk olm install
+- make deploy IMG="ghcr.io/kempy007/challenge-chaos-monkey:v0.0.1"
+
+The following image has been made public so no login is required.
+
+- ghcr.io/kempy007/challenge-chaos-monkey:v0.0.1
+
+## OLM Bundle uninstall
+
+- make undeploy
+- operator-sdk olm uninstall # warning this will remove all operators using this deployment method.
 
 
 ## My Versions
