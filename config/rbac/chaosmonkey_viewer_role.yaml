@@ -1,0 +1,27 @@
+# permissions for end users to view chaosmonkeys.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: chaosmonkey-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: challenge-chaos-monkey
+    app.kubernetes.io/part-of: challenge-chaos-monkey
+    app.kubernetes.io/managed-by: kustomize
+  name: chaosmonkey-viewer-role
+rules:
+- apiGroups:
+  - core.cypherpunk.io
+  resources:
+  - chaosmonkeys
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - core.cypherpunk.io
+  resources:
+  - chaosmonkeys/status
+  verbs:
+  - get
