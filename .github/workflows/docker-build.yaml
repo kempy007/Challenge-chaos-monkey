@@ -3,9 +3,9 @@ name: Create and publish a Docker image
 on:
   workflow_dispatch:
     inputs:
-    version:
-      description: Bundle version.
-      required: true
+      version:
+        description: Bundle version.
+        required: true
   # push:
   #   branches: ['release']
 
