@@ -1,0 +1,9 @@
+kind: ChaosMonkey
+apiVersion: core.cypherpunk.io/v1
+metadata:
+  name: test123
+  namespace: default
+spec:
+  namespace: workloads
+  schedule: "*/1 * * * *"
+  timer: 10

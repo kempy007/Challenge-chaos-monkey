@@ -31,6 +31,7 @@ type ChaosMonkeySpec struct {
 	// Foo is an example field of ChaosMonkey. Edit chaosmonkey_types.go to remove/update
 	Namespace string `json:"namespace,omitempty"`
 	Schedule  string `json:"schedule,omitempty"`
+	Timer     int    `json:"timer,omitempty"`
 }
 
 // ChaosMonkeyStatus defines the observed state of ChaosMonkey

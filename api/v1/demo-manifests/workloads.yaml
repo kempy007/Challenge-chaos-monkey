@@ -1,0 +1,93 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: workloads
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod01
+  namespace: workloads
+  labels:
+    app.cypherpunk.io/eai: '1010101'
+    app.kubernetes.io/instance: ubuntu
+spec:
+  containers:
+    - name: ubuntu
+      image: 'ubuntu:20.04'
+      command:
+        - /bin/bash
+        - '-c'
+        - '--'
+      args:
+        - while true; do sleep 30; done;
+      resources: {}
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod02
+  namespace: workloads
+  labels:
+    app.cypherpunk.io/eai: '369369'
+    app.kubernetes.io/instance: ubuntu
+spec:
+  containers:
+    - name: ubuntu
+      image: 'ubuntu:20.04'
+      command:
+        - /bin/bash
+        - '-c'
+        - '--'
+      args:
+        - while true; do sleep 30; done;
+      resources: {}
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod03
+  namespace: workloads
+  labels:
+    app.cypherpunk.io/eai: '369963'
+    app.kubernetes.io/instance: ubuntu
+spec:
+  containers:
+    - name: ubuntu
+      image: 'ubuntu:20.04'
+      command:
+        - /bin/bash
+        - '-c'
+        - '--'
+      args:
+        - while true; do sleep 30; done;
+      resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-a
+  namespace: workloads
+  labels:
+    app.cypherpunk.io/eai: '3699963'
+    app.kubernetes.io/instance: ubuntu
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.cypherpunk.io/eai: '3699963'
+  template:
+    metadata:
+      labels:
+        app.cypherpunk.io/eai: '3699963'
+        name: testing
+    spec:
+      containers:
+      - name: ubuntu
+        image: ubuntu:latest
+        command:
+          - /bin/bash
+          - '-c'
+          - '--'
+        args:
+          - while true; do sleep 30; done;

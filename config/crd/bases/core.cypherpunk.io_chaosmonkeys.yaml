@@ -41,6 +41,8 @@ spec:
                 type: string
               schedule:
                 type: string
+              timer:
+                type: integer
             type: object
           status:
             description: ChaosMonkeyStatus defines the observed state of ChaosMonkey
