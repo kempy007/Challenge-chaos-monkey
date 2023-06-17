@@ -195,3 +195,4 @@ Updated 17/06/23 ~11:00
 
 - [x] Research How to access resources outside my CRD in operator-sdk
 - [x] Prompt Engineered
+- [x] kubeconfig working 11:15

@@ -105,6 +105,10 @@ func runTimer(NS string, T int) {
 	config, err := rest.InClusterConfig()
 	if err != nil {
 		log.Log.Info(err.Error())
+		config, err = ctrl.GetConfig()
+		if err != nil {
+			log.Log.Info(err.Error())
+		}
 	}
 	if config == nil {
 		log.Log.Info("No config")
