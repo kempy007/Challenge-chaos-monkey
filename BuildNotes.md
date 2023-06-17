@@ -1,9 +1,50 @@
+# Log
+
+Started 16/06/23 ~18:00
+
+- [x] Create a new project(repo)
+- [x] Created strategy at end of challenge.md
+
+Updated 16/06/23 ~18:30 
+
+- [x] Create a new API
+- [x] Create a new Controller
+- [x] Create a new CRD
+- [x] Create a new CR
+- [x] Create a new RBAC
+- [x] Create manifest for CRD
+- [x] Create manifests for demo workloads
+
+Updated 16/06/23 ~19:00 - ~22:00
+
+- Getting interrupted alot broken flow
+- [x] Research How to use Go concurrency
+    - [] Research Go routines
+    - [] Research Go channels
+    - [] Research Go select
+- [x] Re-reading my old projects for hints
+
+Updated 17/06/23 ~11:00
+
+- [x] Research How to access resources outside my CRD in operator-sdk
+- [x] Prompt Engineered for cross reference
+- [x] kubeconfig working 11:15
+- [x] scheduler and pod killer working 11:50
+- [x] adhoc tested sucessfully on two minute schedule 12:10
+- [x] updating readme.md 12:30 - 12:50
+- [] Create Github action to build OLM bundle
+
+---
+
 # Notes
 
 operator-sdk init --domain cypherpunk.io --repo github.com/kempy007/Challenge-chaos-monkey --plugins go.kubebuilder.io/v4-alpha --skip-go-version-check
 
 operator-sdk create api --group=core --version=v1 --kind=ChaosMonkey --controller=true --resource=true
 
+OLM Deployment needs to use docker to build an image which will need repo credentials to push. as per https://sdk.operatorframework.io/docs/building-operators/golang/quickstart/
+
+Look to use https://github.com/marketplace/actions/olm-bundle
 
 ---
 # prompt engineering - https://huggingface.co/spaces/HuggingFaceH4/starchat-playground
@@ -164,35 +205,3 @@ func processPod(p *corev1.Pod) {
 }
 ```
 
---- 
-# Log
-
-Started 16/06/23 ~18:00
-
-- [x] Create a new project(repo)
-- [x] Created strategy at end of challenge.md
-
-Updated 16/06/23 ~18:30 
-
-- [x] Create a new API
-- [x] Create a new Controller
-- [x] Create a new CRD
-- [x] Create a new CR
-- [x] Create a new RBAC
-- [x] Create manifest for CRD
-- [x] Create manifests for demo workloads
-
-Updated 16/06/23 ~19:00 - ~22:00
-
-- Getting interrupted alot broken flow
-- [x] Research How to use Go concurrency
-    - [] Research Go routines
-    - [] Research Go channels
-    - [] Research Go select
-- [x] Re-reading my old projects for hints
-
-Updated 17/06/23 ~11:00
-
-- [x] Research How to access resources outside my CRD in operator-sdk
-- [x] Prompt Engineered
-- [x] kubeconfig working 11:15

@@ -19,6 +19,8 @@ package controller
 import (
 	"context"
 	"fmt"
+	"math/rand"
+	"time"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/kubernetes"
@@ -65,6 +67,7 @@ func (r *ChaosMonkeyReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 	err := r.Client.Get(ctx, req.NamespacedName, &crd)
 	if err != nil {
 		if apierrors.IsNotFound(err) {
+			// TODO: Kill/Ground our channel here
 			return ctrl.Result{}, nil
 		}
 		return ctrl.Result{}, err
@@ -102,6 +105,12 @@ func (r *ChaosMonkeyReconciler) SetupWithManager(mgr ctrl.Manager) error {
 
 // Timer Routine from Namespace, kill random pod in namespace
 func runTimer(NS string, T int) {
+	if NS == "kube-system" {
+		return
+	}
+	if NS == "monitoring" {
+		return
+	}
 	config, err := rest.InClusterConfig()
 	if err != nil {
 		log.Log.Info(err.Error())
@@ -133,16 +142,35 @@ func runTimer(NS string, T int) {
 		return
 	}
 
-	// log each pods.Items
+	var hitlist []string
+
 	for _, pod := range pods.Items {
-		log.Log.Info(pod.Name)
+		hitlist = append(hitlist, pod.Name)
+		log.Log.Info("Hitlist: " + pod.Name)
 	}
 
-	// // Kill random pod
-	// randPod := pods.Items[0].Name
-	// log.Log.Info("Killing pod: " + randPod)
-	// err = podClient.Delete(context.TODO(), randPod, metav1.DeleteOptions{})
-	// if err != nil {
-	// 	//log.Log.Info(err.Error())
-	// }
+	for i := 0; i < 4; i++ {
+		// randomise order of hitlist
+		for i := len(hitlist) - 1; i > 0; i-- {
+			j := rand.Intn(i + 1)
+			hitlist[i], hitlist[j] = hitlist[j], hitlist[i]
+		}
+	}
+
+	for _, pod := range hitlist {
+		log.Log.Info("RND_Hitlist: " + pod)
+	}
+
+	for len(hitlist) > 0 {
+		log.Log.Info("Waiting for next schedule")
+		time.Sleep(time.Duration(T) * time.Minute)
+		log.Log.Info("Killing pod: " + hitlist[0])
+		err = podClient.Delete(context.TODO(), hitlist[0], metav1.DeleteOptions{})
+		if err != nil {
+			log.Log.Info(err.Error())
+		} else {
+			hitlist = hitlist[1:]
+		}
+	}
+	log.Log.Info("Chaos Schedule Completed")
 }

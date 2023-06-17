@@ -1,0 +1,47 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+  name: challenge-chaos-monkey.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: ChaosMonkey is the Schema for the chaosmonkeys API
+      displayName: Chaos Monkey
+      kind: ChaosMonkey
+      name: chaosmonkeys.core.cypherpunk.io
+      version: v1
+  description: chaos-monkey
+  displayName: chaos-monkey
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - chaos
+  links:
+  - name: Challenge Chaos Monkey
+    url: https://challenge-chaos-monkey.domain
+  maintainers:
+  - email: noreply
+    name: cypherpunk
+  maturity: alpha
+  provider:
+    name: cypherpunk.io
+  version: 0.0.0
