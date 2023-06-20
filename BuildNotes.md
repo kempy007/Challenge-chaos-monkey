@@ -58,6 +58,11 @@ I can skip these steps, since github actions built the image.
 just need to run
 - make deploy IMG="ghcr.io/kempy007/challenge-chaos-monkey:v0.0.1"
 
+
+## Testing
+
+- https://sdk.operatorframework.io/docs/building-operators/golang/testing/
+- https://onsi.github.io/ginkgo/
 ---
 # prompt engineering - https://huggingface.co/spaces/HuggingFaceH4/starchat-playground
 

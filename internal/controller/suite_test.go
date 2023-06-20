@@ -41,6 +41,8 @@ var cfg *rest.Config
 var k8sClient client.Client
 var testEnv *envtest.Environment
 
+// create 80% code coverage test for our operator
+
 func TestAPIs(t *testing.T) {
 	RegisterFailHandler(Fail)
 
